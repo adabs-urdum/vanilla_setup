@@ -62,6 +62,8 @@
       renderer.render(scene, camera);
       requestAnimationFrame(mainLoop);
     }
+
+    init();
   }
 
 })(jQuery);
