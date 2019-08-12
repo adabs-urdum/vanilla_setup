@@ -1,21 +1,15 @@
-(function($) {
+document.addEventListener("DOMContentLoaded", function(){
 
-  $.fn.Plugin = function() {
-    var $main = $(this);
-
-    function init(){
-      setVars();
-      bindEvents();
+  class TestClass{
+    constructor(one, two){
+      console.log('TestClass -- constructor');
+      this.one = one;
+      this.two = two;
+      console.log(this.one + ' ' + this.two);
     }
+  }
 
-    function setVars(){
-    }
-
-    function bindEvents(){
-    }
-
-    init();
-  };
+  const testInstance = new TestClass('test', 'class');
 
   function WebGLThreeJS(){
     var scene,
@@ -66,4 +60,4 @@
     init();
   }
 
-})(jQuery);
+});

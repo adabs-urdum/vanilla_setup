@@ -1,2 +1,4 @@
 # vanilla_setup
-Setup with index.html and npm script as Task Runner
+1. npm install
+2.1 url=localhost.url.test npm run watch:dev
+2.2 url=localhost.url.test npm run build
