@@ -1,71 +1,70 @@
 "use strict";
 
-import 'babel-polyfill';
+import "babel-polyfill";
 
-Array.prototype.getRandomValue = (inputArray) => {
+Array.prototype.getRandomValue = inputArray => {
   return inputArray[Math.floor(Math.random() * inputArray.length)];
 };
 
-document.addEventListener("DOMContentLoaded", function(){
-
-  class TestClass{
-    constructor(one, two){
-      console.log('TestClass -- constructor');
+document.addEventListener("DOMContentLoaded", function() {
+  class TestClass {
+    constructor(one, two) {
+      console.log("TestClass -- constructor");
       this.one = one;
       this.two = two;
-      console.log(this.one + ' ' + this.two);
+      console.log(this.one + " " + this.two);
     }
   }
 
-  const testInstance = new TestClass('test', 'class');
+  const testInstance = new TestClass("test", "class");
 
-  function WebGLThreeJS(){
-    var scene,
-        camera,
-        renderer;
+  function WebGLThreeJS() {
+    var scene, camera, renderer;
 
-    function init(){
+    function init() {
       setVars();
       bindEvents();
       initThree();
       mainLoop();
     }
 
-    function setVars(){
-    }
+    function setVars() {}
 
-    function bindEvents(){
-    }
+    function bindEvents() {}
 
-    function initThree(){
+    function initThree() {
       createScene();
       createRenderer();
       createPerspectiveCamera();
     }
 
-    function createScene(){
+    function createScene() {
       scene = new THREE.Scene();
     }
 
-    function createRenderer(){
+    function createRenderer() {
       renderer = new THREE.WebGLRenderer();
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
     }
 
-    function createPerspectiveCamera(){
-      camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 501);
+    function createPerspectiveCamera() {
+      camera = new THREE.PerspectiveCamera(
+        30,
+        window.innerWidth / window.innerHeight,
+        1,
+        501
+      );
       camera.position.z = 10;
       camera.position.x = 0;
       camera.position.y = 0;
     }
 
-    function mainLoop(){
+    function mainLoop() {
       renderer.render(scene, camera);
       requestAnimationFrame(mainLoop);
     }
 
     init();
   }
-
 });
