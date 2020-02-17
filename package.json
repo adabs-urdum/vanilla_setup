@@ -1,6 +1,6 @@
 {
   "name": "VanillaSetup",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "build:cssdev": "node-sass assets/styles/main.scss --output-style expanded --source-map dist/css/styles.min.css.map --error-bell dist/css/styles.min.css",
     "build:cssprod": "node-sass assets/styles/main.scss --output-style compressed dist/css/styles.min.css",
     "build:jsprod": "webpack --mode production ./assets/js/main.js --presets --output ./dist/js/functions.min.js --module-bind js=babel-loader",
-    "build:jsdev": "webpack --mode development ./assets/js/main.js --presets --output ./dist/js/functions.min.js --module-bind js=babel-loader",
+    "build:jsdev": "esbuild --bundle ./assets/js/main.js --outfile=./dist/js/functions.min.js --sourcemap",
     "watch:cssdev": "onchange 'assets/styles/**/*.scss' -- npm run build:cssdev",
     "watch:jsdev": "onchange 'assets/js/**/*.js' -- npm run build:jsdev",
     "serve": "browser-sync start --proxy ${url} --files 'dist/**/*.css, dist/**/*.js' -w",
@@ -24,21 +24,22 @@
   "author": "Cyrill Lehmann",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/plugin-proposal-class-properties": "latest",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/preset-react": "latest",
-    "autoprefixer-stylus": "latest",
-    "babel-loader": "^8.0.5",
     "babel-polyfill": "latest",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/preset-react": "latest",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "parallelshell": "3.0.1",
+    "autoprefixer-stylus": "latest",
+    "node-sass": "latest",
+    "browser-sync": "latest",
+    "package.json": "latest",
+    "onchange": "latest",
     "babylonjs": "latest",
     "babylonjs-materials": "latest",
-    "browser-sync": "latest",
-    "node-sass": "latest",
-    "onchange": "latest",
-    "package.json": "latest",
-    "parallelshell": "3.0.1",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11"
+    "esbuild-darwin-64": "latest"
   }
 }

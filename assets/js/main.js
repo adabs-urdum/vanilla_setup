@@ -13,7 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
       this.one = one;
       this.two = two;
       console.log(this.one + " " + this.two);
+      this.test();
     }
+
+    test = () => {
+      alert("test");
+    };
   }
 
   const testInstance = new TestClass("test", "class");
