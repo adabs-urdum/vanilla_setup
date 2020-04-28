@@ -3,6 +3,7 @@
   $BS: getBaseSize($type);
 
   html {
+    content: $BS;
     font-family: $FontFamilyMain;
     font-weight: 300;
     font-size: #{$BaseRemSize}px;
@@ -123,28 +124,33 @@
 
 @include basicStyles();
 
-@media #{$BreakpointMAX} {
-  @include basicStyles("Max");
+@include breakpoint("MAX") {
+  @include basicStyles("MAX");
 }
 
-@media #{$BreakpointL} {
+@include breakpoint("L") {
   @include basicStyles("L");
 }
 
-@media #{$BreakpointM} {
+@include breakpoint("M") {
   @include basicStyles("M");
 }
 
-@media #{$BreakpointS} {
+@include breakpoint("S") {
   @include basicStyles("S");
+
+  .mobile_only {
+    display: block;
+  }
+
+  .desktop_only {
+    display: none;
+  }
 }
 
-@media #{$BreakpointXS} {
+@include breakpoint("XS") {
   @include basicStyles("XS");
-}
 
-// Overwrite preset mobile styles above
-@media #{$BreakpointS} {
   .mobile_only {
     display: block;
   }

@@ -28,7 +28,7 @@ $XSBS: $BS * $BreakpointXSRelation;
 // Screendesign max width and larger
 $BreakpointMAX: screen and
   (
-    min-width: $ScreendesignWidth + 0px,
+    min-width: $ScreendesignWidthMAX + 0px,
   );
 
 // MacBook Pro (Retina, 15-inch, Mid 2015) screen width

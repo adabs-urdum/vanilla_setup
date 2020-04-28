@@ -1,25 +1,48 @@
 // Styles
 @mixin basicStyles($type: "") {
+  $BS: getBaseSize($type);
+
+  .test {
+    background: lime;
+
+    padding: $BS * 32;
+
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__img {
+      width: $BS * 100;
+      height: $BS * 100;
+      background: $Yellow;
+    }
+  }
 }
 
 @include basicStyles();
 
-@media #{$BreakpointMAX} {
-  @include basicStyles("Max");
+@include breakpoint("MAX") {
+  @include basicStyles("MAX");
 }
 
-@media #{$BreakpointL} {
+@include breakpoint("L") {
   @include basicStyles("L");
 }
 
-@media #{$BreakpointM} {
+@include breakpoint("M") {
   @include basicStyles("M");
 }
 
-@media #{$BreakpointS} {
+@include breakpoint("S") {
   @include basicStyles("S");
 }
 
-@media #{$BreakpointXS} {
+@include breakpoint("XS") {
   @include basicStyles("XS");
 }
