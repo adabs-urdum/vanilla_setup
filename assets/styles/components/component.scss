@@ -1,0 +1,25 @@
+// Styles
+@mixin basicStyles($type: "") {
+}
+
+@include basicStyles();
+
+@media #{$BreakpointMAX} {
+  @include basicStyles("Max");
+}
+
+@media #{$BreakpointL} {
+  @include basicStyles("L");
+}
+
+@media #{$BreakpointM} {
+  @include basicStyles("M");
+}
+
+@media #{$BreakpointS} {
+  @include basicStyles("S");
+}
+
+@media #{$BreakpointXS} {
+  @include basicStyles("XS");
+}

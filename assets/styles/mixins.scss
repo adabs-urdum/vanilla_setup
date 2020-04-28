@@ -1,11 +1,3 @@
-@mixin bs-font-size($value){
+@mixin bsFontSize($BS, $value) {
   font-size: calc(1rem + #{$BS} * #{$value} - #{$BaseRemSize} * 1px);
-}
-
-@mixin bs-font-size-max($value){
-  font-size: calc(1rem + #{$value} * 1px - #{$BaseRemSize} * 1px);
-}
-
-@mixin bs-font-size-mobile($value){
-  font-size: calc(1rem + #{$MBS} * #{$value} - #{$BaseRemSize} * 1px);
 }

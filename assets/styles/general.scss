@@ -1,81 +1,155 @@
-html{
-  font-family: 'Gilroy', sans-serif;
-  font-weight: 200;
-  font-size: #{$BaseRemSize}px;
-  line-height: 120%;
-  color: $Black;
-}
+// Styles
+@mixin basicStyles($type: "") {
+  $BS: getBaseSize($type);
 
-h1, h2, h3, h4, h5, h6{
-  margin: 0;
-  padding: 0;
-  line-height: 120%;
-  font-weight: 700;
-}
-
-h1{
-  @include bs-font-size(62);
-}
-
-h2{
-  @include bs-font-size(44);
-}
-
-h3{
-  @include bs-font-size(36);
-}
-
-h4{
-  @include bs-font-size(26);
-}
-
-h5, h6{
-  @include bs-font-size(20);
-}
-
-p{
-  margin: 0;
-  padding: 0;
-}
-
-ul, li{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-a{
-  display: inline-block;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s ease-out;
-  &:hover{
-    transform: scale(1.03);
+  html {
+    font-family: $FontFamilyMain;
+    font-weight: 300;
+    font-size: #{$BaseRemSize}px;
+    line-height: 120%;
+    color: $Black;
   }
-  &:active{
-    transform: scale(0.96);
+
+  body {
+    @include bsFontSize($BS, $BaseRemSize);
+    line-height: 120%;
   }
-}
 
-img, canvas{
-  display: block;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 120%;
+    font-weight: 700;
 
-.desktop_only{
-  display: block;
-}
+    &:first-of-type {
+      margin-top: 0;
+    }
 
-.mobile_only{
-  display: none;
-}
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 
+  h1 {
+    @include bsFontSize($BS, 62);
+  }
 
-@media #{BreakpointS}{
-  .mobile_only{
+  h2 {
+    @include bsFontSize($BS, 44);
+  }
+
+  h3 {
+    @include bsFontSize($BS, 36);
+  }
+
+  h4 {
+    @include bsFontSize($BS, 26);
+  }
+
+  h5,
+  h6 {
+    @include bsFontSize($BS, 20);
+  }
+
+  input,
+  button {
+    font-family: $FontFamilyMain;
+  }
+
+  p {
+    padding: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  li {
+    padding: 0;
+    list-style: none;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      border-bottom: $BS $Black solid;
+    }
+
+    &:hover {
+    }
+
+    &:active {
+    }
+  }
+
+  img,
+  canvas {
     display: block;
   }
 
-  .desktop_only{
+  .desktop_only {
+    display: block;
+  }
+
+  .mobile_only {
+    display: none;
+  }
+}
+
+@include basicStyles();
+
+@media #{$BreakpointMAX} {
+  @include basicStyles("Max");
+}
+
+@media #{$BreakpointL} {
+  @include basicStyles("L");
+}
+
+@media #{$BreakpointM} {
+  @include basicStyles("M");
+}
+
+@media #{$BreakpointS} {
+  @include basicStyles("S");
+}
+
+@media #{$BreakpointXS} {
+  @include basicStyles("XS");
+}
+
+// Overwrite preset mobile styles above
+@media #{$BreakpointS} {
+  .mobile_only {
+    display: block;
+  }
+
+  .desktop_only {
     display: none;
   }
 }
