@@ -1,11 +1,13 @@
 // Styles
-@mixin basicStyles($type: "") {
+// name mixin after scss component
+@mixin component($type: "") {
+  // get Basesize in correct relation to design width
   $BS: getBaseSize($type);
 
   .test {
-    background: lime;
-
     padding: $BS * 32;
+    background: $BlueDark;
+    color: $White;
 
     &__wrapper {
       display: flex;
@@ -20,29 +22,41 @@
     &__img {
       width: $BS * 100;
       height: $BS * 100;
-      background: $Yellow;
+      background-color: $Yellow;
     }
   }
 }
 
-@include basicStyles();
+// Add component
+@include component();
 
+// Add auto styles with breakpoints
 @include breakpoint("MAX") {
-  @include basicStyles("MAX");
+  @include component("MAX");
 }
 
 @include breakpoint("L") {
-  @include basicStyles("L");
+  @include component("L");
 }
 
 @include breakpoint("M") {
-  @include basicStyles("M");
+  @include component("M");
 }
 
 @include breakpoint("S") {
-  @include basicStyles("S");
+  @include component("S");
 }
 
 @include breakpoint("XS") {
-  @include basicStyles("XS");
+  @include component("XS");
+}
+
+// Add custom styles with breakpoints
+@include breakPointS() {
+  $BS: getBaseSize("S");
+
+  .test {
+    padding: $BS * 16;
+    background: $Blue;
+  }
 }

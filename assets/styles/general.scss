@@ -1,5 +1,6 @@
 // Styles
-@mixin basicStyles($type: "") {
+// name mixin after scss component
+@mixin styles($type: "") {
   $BS: getBaseSize($type);
 
   html {
@@ -9,11 +10,14 @@
     font-size: #{$BaseRemSize}px;
     line-height: 120%;
     color: $Black;
+    background-color: $White;
   }
 
   body {
     @include bsFontSize($BS, $BaseRemSize);
     line-height: 120%;
+    max-width: $ScreendesignWidthMAX + 0px;
+    margin: 0 auto;
   }
 
   h1,
@@ -113,44 +117,41 @@
     display: block;
   }
 
-  .desktop_only {
-    display: block;
-  }
-
   .mobile_only {
     display: none;
   }
+
+  .desktop_only {
+    display: block;
+  }
 }
 
-@include basicStyles();
+// Add styles
+@include styles();
 
+// Add auto styles with breakpoints
 @include breakpoint("MAX") {
-  @include basicStyles("MAX");
+  @include styles("MAX");
 }
 
 @include breakpoint("L") {
-  @include basicStyles("L");
+  @include styles("L");
 }
 
 @include breakpoint("M") {
-  @include basicStyles("M");
+  @include styles("M");
 }
 
 @include breakpoint("S") {
-  @include basicStyles("S");
-
-  .mobile_only {
-    display: block;
-  }
-
-  .desktop_only {
-    display: none;
-  }
+  @include styles("S");
 }
 
 @include breakpoint("XS") {
-  @include basicStyles("XS");
+  @include styles("XS");
+}
 
+// Add custom styles with breakpoints
+@include breakPointS() {
   .mobile_only {
     display: block;
   }
