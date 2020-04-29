@@ -11,7 +11,7 @@
     font-size: #{$BaseRemSize}px;
     line-height: 120%;
     color: $Black;
-    background-color: $White;
+    background-color: $Yellow;
   }
 
   body {
@@ -106,11 +106,9 @@
       border-bottom: $BS $Black solid;
     }
 
-    &:hover {
-    }
+    &:hover {}
 
-    &:active {
-    }
+    &:active {}
   }
 
   img,
