@@ -1,15 +1,16 @@
 // Styles
 // name mixin after scss component
 @mixin styles($type: "") {
+  // get Basesize in correct relation to design width
   $BS: getBaseSize($type);
 
   html {
     content: $BS;
     font-family: $FontFamilyMain;
     font-weight: 300;
-    // only set font-size here, if needed(designed not to be 16px)
-    // font-size: #{$BaseRemSize}px;
-    line-height: 130%;
+    // only set font-size here, if really needed
+    // font-size: 16px;
+    line-height: 120%;
     color: $Black;
     background-color: $Yellow;
   }
@@ -184,25 +185,11 @@
 // Add styles
 @include styles();
 
-// Add auto styles with breakpoints
-@include breakpoint("MAX") {
-  @include styles("MAX");
-}
-
-@include breakpoint("L") {
-  @include styles("L");
-}
-
-@include breakpoint("M") {
-  @include styles("M");
-}
-
-@include breakpoint("S") {
-  @include styles("S");
-}
-
-@include breakpoint("XS") {
-  @include styles("XS");
+// Add basic styles with breakpoints
+@each $Breakpoint in $Breakpoints {
+  @include breakpoint(#{$Breakpoint}) {
+    @include styles(#{$Breakpoint});
+  }
 }
 
 // Add custom styles with breakpoints

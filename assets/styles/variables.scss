@@ -26,6 +26,9 @@ $MBS: $BS * $BreakpointMRelation;
 $SBS: $BS * $BreakpointSRelation;
 $XSBS: $BS * $BreakpointXSRelation;
 
+// Define used breakpoints
+$Breakpoints: "Max", "L", "M", "S", "XS";
+
 // Screendesign max width and larger
 $BreakpointMAX: screen and
   (

@@ -1,7 +1,9 @@
+// wrap your code in a mixin
 @mixin intro($type: "") {
   // get Basesize in correct relation to design width
   $BS: getBaseSize($type);
 
+  // define the styles of your component as designed
   .intro {
     padding: $BS * 32;
     max-width: $BS * 1200;
@@ -10,31 +12,17 @@
   }
 }
 
-// Add intro
+// Render basic styles as designed
 @include intro();
 
-// Add auto styles with breakpoints
-@include breakpoint("MAX") {
-  @include intro("MAX");
+// Render basic styles with breakpoints
+@each $Breakpoint in $Breakpoints {
+  @include breakpoint(#{$Breakpoint}) {
+    @include intro(#{$Breakpoint});
+  }
 }
 
-@include breakpoint("L") {
-  @include intro("L");
-}
-
-@include breakpoint("M") {
-  @include intro("M");
-}
-
-@include breakpoint("S") {
-  @include intro("S");
-}
-
-@include breakpoint("XS") {
-  @include intro("XS");
-}
-
-// Add custom styles with breakpoints
+// Render custom styles with breakpoints
 @include breakPointS() {
   $BS: getBaseSize("S");
 }
