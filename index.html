@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>Vanilla Setup 3.0.2</title>
   </head>
-  <link rel="stylesheet" href="./dist/css/styles.min.css?v=1" />
+  <link rel="stylesheet" href="./dist/css/styles.min.css?v=2" />
   <body>
     <section class="intro">
 
@@ -133,91 +133,6 @@
         &nbsp;@include intro("XS");<br />
         }
       </code>
-    </section>
-    <section class="test">
-      <div>
-        <h2>Another example</h2>
-      </div>
-      <div class="test__wrapper">
-        <h5 class="test__title">
-          <span class="mobile_only">less than</span>
-          <span class="desktop_only">more than</span>
-        </h5>
-        <img class="test__img" src="" alt="" />
-        <h5 class="test__title">768px</h5>
-      </div>
-      <div>
-        <p>This sections entire scss:</p>
-        <code>
-          // Styles<br>
-          // name mixin after scss component<br>
-          @mixin test($type: "") {<br>
-          &nbsp;// get Basesize in correct relation to design width<br>
-          &nbsp;$BS: getBaseSize($type);<br>
-          <br>
-          &nbsp;.test {<br>
-          &nbsp;&nbsp;padding: $BS * 32;<br>
-          &nbsp;&nbsp;background: $BlueDark;<br>
-          &nbsp;&nbsp;color: $White;<br>
-          <br>
-          &nbsp;&nbsp;&__wrapper {<br>
-          &nbsp;&nbsp;&nbsp;display: flex;<br>
-          &nbsp;&nbsp;&nbsp;justify-content: space-between;<br>
-          &nbsp;&nbsp;&nbsp;align-items: center;<br>
-          &nbsp;&nbsp;}<br>
-          <br>
-          &nbsp;&nbsp;&__title {<br>
-          &nbsp;&nbsp;&nbsp;margin: 0;<br>
-          &nbsp;&nbsp;}<br>
-          <br>
-          &nbsp;&nbsp;&__img {<br>
-          &nbsp;&nbsp;&nbsp;width: $BS * 100;<br>
-          &nbsp;&nbsp;&nbsp;height: $BS * 100;<br>
-          &nbsp;&nbsp;&nbsp;background-color: $Blue;<br>
-          &nbsp;&nbsp;}<br>
-          &nbsp;}<br>
-          }<br>
-          <br>
-          // Add test<br>
-          @include test();<br>
-          <br>
-          // Add auto styles with breakpoints<br>
-          @include breakpoint("MAX") {<br>
-          &nbsp;@include test("MAX");<br>
-          }<br>
-          <br>
-          @include breakpoint("L") {<br>
-          &nbsp;@include test("L");<br>
-          }<br>
-          <br>
-          @include breakpoint("M") {<br>
-          &nbsp;@include test("M");<br>
-          }<br>
-          <br>
-          @include breakpoint("S") {<br>
-          &nbsp;@include test("S");<br>
-          }<br>
-          <br>
-          @include breakpoint("XS") {<br>
-          &nbsp;@include test("XS");<br>
-          }<br>
-          <br>
-          // Add custom styles with breakpoints<br>
-          @include breakPointS() {<br>
-          &nbsp;$BS: getBaseSize("S");<br>
-          &nbsp;<br>
-          &nbsp;.test {<br>
-          &nbsp;&nbsp;padding: $BS * 16;<br>
-          &nbsp;&nbsp;background: $Blue;<br>
-          &nbsp;<br>
-          &nbsp;&nbsp;&__img {<br>
-          &nbsp;&nbsp;&nbsp;background-color: $BlueDark;<br>
-          &nbsp;&nbsp;}<br>
-          &nbsp;}<br>
-          }<br>
-
-        </code>
-      </div>
     </section>
     <section style="text-align: center; padding: 5%;">
       <a class="button" href="https://github.com/adabs-urdum/vanilla_setup" target="_blank" rel="noopener">Github</a>
