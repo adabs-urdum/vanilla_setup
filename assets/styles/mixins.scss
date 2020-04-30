@@ -1,5 +1,7 @@
 @mixin bsFontSize($BS, $value) {
-  font-size: calc(1rem + #{$BS} * #{$value} - #{$BaseRemSize} * 1px);
+  font-size: calc(
+    1rem * #{$RemSizeFactor} + #{$BS} * #{$value} - #{$BaseRemSize} * 1px
+  );
 }
 
 @mixin breakpoint($type) {

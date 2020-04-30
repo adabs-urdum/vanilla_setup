@@ -12,21 +12,212 @@
   <link rel="stylesheet" href="./dist/css/styles.min.css" />
   <body>
     <script src="./dist/js/functions.min.js"></script>
-    <section>
-      <h1>Lorem ipsum</h1>
-      <h2>Dolor sit amet</h2>
+    <section class="intro">
+
+      <h1>My personal frontend setup</h1>
       <p>
-        secturm sempra, <a href="#">Testlink</a> valar morghulis, valar
-        doaheris.
+        My scss setup contains a base-size, BS, as general unit. I define 1 BS
+        by dividing 100vw with the design-width. Any element attribute using
+        this unit will scale according to the screen width.
       </p>
-      <h1 class="mobile_only">Mobile only</h1>
-      <h1 class="desktop_only">Desktop only</h1>
+
+      <h2>The base size unit BS</h2>
+      <code>
+        $BS: 100vw / 1980;
+      </code>
+      <p>
+        This means 1 BS resembles 1px of the screendesign width, but converted
+        to the vw unit. What this allows me to do, is using the exact design
+        pixel specification if needed. For example: If we have a screen designed
+        on a canvas of 1980px width and there is a block of 600px width in it, i
+        use $BS*600. This will be calculated to 100vw/1980*600=30.3030vw. It's
+        basically a simple percentage calculation.
+      </p>
+
+      <h2>Automated responsiveness</h2>
+      <p>
+        Furthermore there are a few scss mixins, which automatically adjusts the
+        BS according to the screen width (which usually is the device width) at
+        switchable breakpoints 500, 768, 1024, 1450 and 1980 (design-width). So,
+        if there is no mobile design to work with, everything gets scaled down
+        keeping the aspect ratio by default. Which is quite neat.
+      </p>
+      <code>
+        $BreakpointXSRelation: 1 / 500 * 1980;<br />
+        $XSBS: $BS * $BreakpointXSRelation;
+      </code>
+      <p>
+        First I calculate the factor between the desired breakpoint and the
+        screendesign width. In this case the factor between 500 and 1980 is
+        3.96. If i now multiply the BS by this factor, every element using BS
+        accordingly will be scaled up times 3.96. But this way not just the
+        relations between elements won't be lost, even the general appearance of
+        the website won't change. Because once the screen width gets down to
+        500px, it will be 3.96 times smaller than the screendesign of 1980px.
+        But at this point we multiply BS by the same factor 3.96 to even it out.
+      </p>
+
+      <h2>BS font-size taking rem into consideration</h2>
+      <p>
+        The font-size is also managed by a mixin which converts the BS value
+        back to px after factoring also the unit rem in. This results in a
+        font-size which is respecting the design and accessibility.
+      </p>
+      <code>
+        @mixin bsFontSize($BS, $value) {<br />
+        &nbsp;font-size: calc(1rem * #{$RemSizeFactor} + #{$BS} * #{$value} -
+        #{$BaseRemSize} * 1px);<br />
+        }
+      </code>
+      <p>
+        This might look a bit mind boggling at first glance, but is quite
+        simple once you get behind it.
+        <ul>
+          <li>1rem resembles either the font-size set on the html or body tag or more favourable the default font-size the user's browser has set.</li>
+          <li>$RemSizeFactor is based on the fact, that usually the browsers default font-size is set to 16px. The screendesign may has a copy text font-size of 22px. Which means the factor between is (1 / 16 * 22) 1.375.</li>
+          <li>$value is the desired font-size.</li>
+          <li>$BaseRemSize is the screen designs copy text font-size.</li>
+        </ul>
+        Let's look at this in a simplified way:
+      </p>
+      <code>
+        font-size: desiredFontSize - designDefaultSizeInPx +
+        userDefaultSizeInPx;
+      </code>
+      <p>
+        So basically if the users browser font-size is set to more than the usual 16px, this mixin will add the «more» and respectively would subtract the «less».
+      </p>
+
+      <h2>Long story short</h2>
+      <p>
+        Using this knot of different mixins, functions and variables I am able to create a website quite fast and even have a mobile version, which must be optimized, of course. But a lot of it is already done.
+        This whole section block's SCSS incl. responiveness is basically as follows:
+      </p>
+      <code>
+        @mixin intro($type: "") {<br />
+        <br />
+        &nbsp;// get Basesize in correct relation to screen and design width<br />
+        &nbsp;$BS: getBaseSize($type);<br />
+        <br />
+        &nbsp;.intro {<br />
+        &nbsp;&nbsp;padding: $BS * 32;<br />
+        &nbsp;&nbsp;max-width: $BS * 1200;<br />
+        &nbsp;&nbsp;margin: 0 auto $BS * 128;<br />
+        &nbsp;&nbsp;@include bsFontSize($BS, 22);<br />
+        &nbsp;}<br />
+        <br />
+        }<br />
+        <br />
+        <br />
+        // Add intro<br />
+        @include intro();<br />
+        <br />
+        <br />
+        // Add auto styles with breakpoints<br />
+        @include breakpoint("MAX") {<br />
+        &nbsp;@include intro("MAX");<br />
+        }<br />
+        <br />
+        @include breakpoint("L") {<br />
+        &nbsp;@include intro("L");<br />
+        }<br />
+        <br />
+        @include breakpoint("M") {<br />
+        &nbsp;@include intro("M");<br />
+        }<br />
+        <br />
+        @include breakpoint("S") {<br />
+        &nbsp;@include intro("S");<br />
+        }<br />
+        <br />
+        @include breakpoint("XS") {<br />
+        &nbsp;@include intro("XS");<br />
+        }
+      </code>
     </section>
     <section class="test">
+      <div>
+        <h2>Another example</h2>
+      </div>
       <div class="test__wrapper">
-        <h1 class="test__title">adabs</h1>
+        <h5 class="test__title">
+          <span class="mobile_only">less than</span>
+          <span class="desktop_only">more than</span>
+        </h5>
         <img class="test__img" src="" alt="" />
-        <h1 class="test__title">urdum</h1>
+        <h5 class="test__title">768px</h5>
+      </div>
+      <div>
+        <p>This sections entire scss:</p>
+        <code>
+          // Styles<br>
+          // name mixin after scss component<br>
+          @mixin test($type: "") {<br>
+          &nbsp;// get Basesize in correct relation to design width<br>
+          &nbsp;$BS: getBaseSize($type);<br>
+          <br>
+          &nbsp;.test {<br>
+          &nbsp;&nbsp;padding: $BS * 32;<br>
+          &nbsp;&nbsp;background: $BlueDark;<br>
+          &nbsp;&nbsp;color: $White;<br>
+          <br>
+          &nbsp;&nbsp;&__wrapper {<br>
+          &nbsp;&nbsp;&nbsp;display: flex;<br>
+          &nbsp;&nbsp;&nbsp;justify-content: space-between;<br>
+          &nbsp;&nbsp;&nbsp;align-items: center;<br>
+          &nbsp;&nbsp;}<br>
+          <br>
+          &nbsp;&nbsp;&__title {<br>
+          &nbsp;&nbsp;&nbsp;margin: 0;<br>
+          &nbsp;&nbsp;}<br>
+          <br>
+          &nbsp;&nbsp;&__img {<br>
+          &nbsp;&nbsp;&nbsp;width: $BS * 100;<br>
+          &nbsp;&nbsp;&nbsp;height: $BS * 100;<br>
+          &nbsp;&nbsp;&nbsp;background-color: $Blue;<br>
+          &nbsp;&nbsp;}<br>
+          &nbsp;}<br>
+          }<br>
+          <br>
+          // Add test<br>
+          @include test();<br>
+          <br>
+          // Add auto styles with breakpoints<br>
+          @include breakpoint("MAX") {<br>
+          &nbsp;@include test("MAX");<br>
+          }<br>
+          <br>
+          @include breakpoint("L") {<br>
+          &nbsp;@include test("L");<br>
+          }<br>
+          <br>
+          @include breakpoint("M") {<br>
+          &nbsp;@include test("M");<br>
+          }<br>
+          <br>
+          @include breakpoint("S") {<br>
+          &nbsp;@include test("S");<br>
+          }<br>
+          <br>
+          @include breakpoint("XS") {<br>
+          &nbsp;@include test("XS");<br>
+          }<br>
+          <br>
+          // Add custom styles with breakpoints<br>
+          @include breakPointS() {<br>
+          &nbsp;$BS: getBaseSize("S");<br>
+          &nbsp;<br>
+          &nbsp;.test {<br>
+          &nbsp;&nbsp;padding: $BS * 16;<br>
+          &nbsp;&nbsp;background: $Blue;<br>
+          &nbsp;<br>
+          &nbsp;&nbsp;&__img {<br>
+          &nbsp;&nbsp;&nbsp;background-color: $BlueDark;<br>
+          &nbsp;&nbsp;}<br>
+          &nbsp;}<br>
+          }<br>
+
+        </code>
       </div>
     </section>
   </body>

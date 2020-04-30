@@ -1,6 +1,6 @@
 // Styles
 // name mixin after scss component
-@mixin component($type: "") {
+@mixin test($type: "") {
   // get Basesize in correct relation to design width
   $BS: getBaseSize($type);
 
@@ -22,33 +22,33 @@
     &__img {
       width: $BS * 100;
       height: $BS * 100;
-      background-color: $Yellow;
+      background-color: $Blue;
     }
   }
 }
 
-// Add component
-@include component();
+// Add test
+@include test();
 
 // Add auto styles with breakpoints
 @include breakpoint("MAX") {
-  @include component("MAX");
+  @include test("MAX");
 }
 
 @include breakpoint("L") {
-  @include component("L");
+  @include test("L");
 }
 
 @include breakpoint("M") {
-  @include component("M");
+  @include test("M");
 }
 
 @include breakpoint("S") {
-  @include component("S");
+  @include test("S");
 }
 
 @include breakpoint("XS") {
-  @include component("XS");
+  @include test("XS");
 }
 
 // Add custom styles with breakpoints
@@ -58,5 +58,9 @@
   .test {
     padding: $BS * 16;
     background: $Blue;
+
+    &__img {
+      background-color: $BlueDark;
+    }
   }
 }

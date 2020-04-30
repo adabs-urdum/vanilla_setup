@@ -1,0 +1,40 @@
+@mixin intro($type: "") {
+  // get Basesize in correct relation to design width
+  $BS: getBaseSize($type);
+
+  .intro {
+    padding: $BS * 32;
+    max-width: $BS * 1200;
+    margin: 0 auto $BS * 128;
+    @include bsFontSize($BS, 22);
+  }
+}
+
+// Add intro
+@include intro();
+
+// Add auto styles with breakpoints
+@include breakpoint("MAX") {
+  @include intro("MAX");
+}
+
+@include breakpoint("L") {
+  @include intro("L");
+}
+
+@include breakpoint("M") {
+  @include intro("M");
+}
+
+@include breakpoint("S") {
+  @include intro("S");
+}
+
+@include breakpoint("XS") {
+  @include intro("XS");
+}
+
+// Add custom styles with breakpoints
+@include breakPointS() {
+  $BS: getBaseSize("S");
+}

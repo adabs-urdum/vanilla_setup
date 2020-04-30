@@ -8,15 +8,15 @@
     font-family: $FontFamilyMain;
     font-weight: 300;
     // only set font-size here, if needed(designed not to be 16px)
-    font-size: #{$BaseRemSize}px;
-    line-height: 120%;
+    // font-size: #{$BaseRemSize}px;
+    line-height: 130%;
     color: $Black;
     background-color: $Yellow;
   }
 
   body {
     @include bsFontSize($BS, $BaseRemSize);
-    line-height: 120%;
+    line-height: 190%;
     max-width: $ScreendesignWidthMAX + 0px;
     margin: 0 auto;
   }
@@ -91,6 +91,19 @@
     }
   }
 
+  li {
+    // position: relative;
+    padding-left: $BS * 20;
+
+    &:before {
+      content: "\2022";
+      margin-left: $BS * -20;
+      margin-right: $BS * 10;
+      font-size: 110%;
+      line-height: 50%;
+    }
+  }
+
   a {
     position: relative;
     display: inline-block;
@@ -106,9 +119,20 @@
       border-bottom: $BS $Black solid;
     }
 
-    &:hover {}
+    &:hover {
+    }
 
-    &:active {}
+    &:active {
+    }
+  }
+
+  code {
+    display: block;
+    background-color: $Black;
+    color: $White;
+    border-radius: $BS * 2;
+    padding: $BS * 14 $BS * 16 $BS * 16;
+    margin: $BS * 16 0;
   }
 
   img,

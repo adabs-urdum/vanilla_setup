@@ -1,7 +1,8 @@
 $FontFamilyMain: "Roboto Condensed", sans-serif;
 
 // Font Size set in <html>
-$BaseRemSize: 18;
+$BaseRemSize: 22;
+$RemSizeFactor: 1 / 16 * 22;
 
 // Width of Screendesign
 $ScreendesignWidth: 1980;
