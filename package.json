@@ -1,6 +1,6 @@
 {
   "name": "VanillaSetup",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "build:cssdev": "node-sass assets/styles/main.scss --output-style expanded --source-map dist/css/styles.min.css.map --error-bell dist/css/styles.min.css",
     "build:cssprod": "node-sass assets/styles/main.scss --output-style compressed dist/css/styles.min.css",
     "build:jsprod": "webpack --mode production ./assets/js/main.js --presets --output ./dist/js/functions.min.js --module-bind js=babel-loader",
-    "build:jsdev": "esbuild --bundle ./assets/js/main.js --outfile=./dist/js/functions.min.js --sourcemap",
+    "build:jsdev": "esbuild ./assets/js/main.js --outfile=./dist/js/functions.min.js --sourcemap --minify --bundle --target=es2016",
     "watch:cssdev": "onchange 'assets/styles/**/*.scss' -- npm run build:cssdev",
     "watch:jsdev": "onchange 'assets/js/**/*.js' -- npm run build:jsdev",
     "serve": "browser-sync start --proxy https://vanilla_setup.test --files 'dist/**/*.css, dist/**/*.js' -w",
