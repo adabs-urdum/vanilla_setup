@@ -1,4 +1,4 @@
-# cyrill-lehmann.ch frontend setup
+# cyrill-lehmann.ch vanilla setup
 
 ## Pipeline
 

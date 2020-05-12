@@ -16,7 +16,7 @@
       <h1>My personal CSS/SCSS setup</h1>
       <p>
         My scss setup contains a base-size, BS, as general unit. I define 1 BS
-        by dividing 100vw with the design-width. Any element attribute using
+        by dividing 100vw with the design-width. Any element using
         this unit will scale according to the screen width.
       </p>
 
@@ -29,7 +29,7 @@
         to the vw unit. What this allows me to do, is using the exact design
         pixel specification if needed. For example: If we have a screen designed
         on a canvas of 1980px width and there is a block of 600px width in it, i
-        use $BS*600. This will be calculated to 100vw/1980*600=30.3030vw. It's
+        use $BS*600. This will be calculated to (100vw/1980*600) 30.3030vw. It's
         basically a simple percentage calculation.
       </p>
 
@@ -37,7 +37,7 @@
       <p>
         Furthermore there are a few scss mixins, which automatically adjust the
         BS according to the screen width (which usually is the device width) at
-        switchable breakpoints 500, 768, 1024, 1450 and 1980 (design-width). So,
+        changable breakpoints 500, 768, 1024, 1450 and 1980 (design-width). So,
         if there is no mobile design to work with, everything gets scaled down
         keeping the aspect ratio by default. Which is quite neat.
       </p>
@@ -49,11 +49,16 @@
         First I calculate the factor between the desired breakpoint and the
         screendesign width. In this case the factor between 500 and 1980 is
         3.96. If i now multiply the BS by this factor, every element using BS
-        accordingly will be scaled up times 3.96. But this way not just the
-        relations between elements won't be lost, even the general appearance of
-        the website won't change. Because once the screen width gets down to
+        accordingly will be scaled up times 3.96. This way not just the
+        relations between elements won't be lost, but the general appearance of
+        the website won't change either. Because once the screen width gets down to
         500px, it will be 3.96 times smaller than the screendesign of 1980px.
-        But at this point we multiply BS by the same factor 3.96 to even it out.
+        But at this point i multiply BS by the same factor 3.96 to even it out.
+      </p>
+
+      <h3>Set maximum width</h3>
+      <p>
+        Using the same method i can also set a maximum width, so the content doesn't scale up to be too large on big screens. The easiest example is using the design width as max-width. Because in this case i just have to do $BS = 1px at a viewport width of 1980px. On viewports wider than 1980px the design now is exactly the same as designed.
       </p>
 
       <h2>BS font-size taking rem into consideration</h2>
@@ -72,8 +77,8 @@
         This might look a bit mind boggling at first glance, but is quite
         simple once you get behind it.
         <ul>
-          <li>1rem resembles either the font-size set on the html or body tag or more favourable the default font-size the user's browser has set.</li>
-          <li>$RemSizeFactor is based on the fact, that usually the browsers default font-size is set to 16px. The screendesign may has a copy text font-size of 22px. Which means the factor between is (1 / 16 * 22) 1.375.</li>
+          <li>1rem resembles either the font-size set on the html or body tag or, more favourable, the default font-size the user's browser has set.</li>
+          <li>$RemSizeFactor is based on the fact, that usually the browser's default font-size is set to 16px. The screendesign may has a copy text font-size of 22px. Which means the factor between is (1 / 16 * 22) 1.375.</li>
           <li>$value is the desired font-size.</li>
           <li>$BaseRemSize is the screen designs copy text font-size.</li>
         </ul>
@@ -84,12 +89,17 @@
         userDefaultSizeInPx;
       </code>
       <p>
-        So basically if the users browser font-size is set to more than the usual 16px, this mixin will add the «more» and respectively would subtract the «less».
+        So basically if the user's browser font-size is set to more than the usual 16px, this mixin will add the «more» and respectively would subtract the «less».
+      </p>
+
+      <h2>Downsides</h2>
+      <p>
+        Beside the need to adapt the thought process to a new unit, the only real downside is the possible glitches. Sometimes (at some screen sizes) two elements of $BS*600 width inside an element of $BS*1200 width won't exactly match borders and leave a thin line between them. This is because although i can use vw as unit, the browser is still bound to absolute pixels. Back to our example this could mean $BS*1200 is, displayed on the screen, 867px. The two child elements of $BS*600 width therefore would be 433.5px. But the browser is bound to absolute pixels and will either ceil or floor the 433.5px. That's why the glitches happen.
       </p>
 
       <h2>Long story short</h2>
       <p>
-        Using this knot of different mixins, functions and variables I am able to create a website quite fast and even have a mobile version, which must be optimized, of course. But a lot of it is already done.
+        Using this knot of different mixins, functions and variables i am able to create a website quite fast and even have a mobile version from the start. Which must be optimized, of course. A lot of it is already done though.
         This whole section block's SCSS incl. responiveness is basically as follows:
       </p>
       <code>
@@ -123,9 +133,14 @@
         &nbsp;$BS: getBaseSize("S");<br />
         }
       </code>
-    </section>
-    <section style="text-align: center; padding: 5%;">
+
+      <h2>Here, take it</h2>
+      <p>
+        If you found your webdev- or any other neurons to be tingled while reading this, please give it a try. Let me know whether you like it or you think it's total BS. Pun intended.
+      </p>
       <a class="button" href="https://github.com/adabs-urdum/vanilla_setup" target="_blank" rel="noopener">Github</a>
+      <a class="button" href="https://cyrill-lehmann.ch" target="_blank" rel="noopener">cyrill-lehmann.ch</a>
+
     </section>
   </body>
 
