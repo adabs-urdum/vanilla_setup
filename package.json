@@ -13,7 +13,7 @@
     "build:cssprod": "node-sass assets/styles/main.scss --output-style compressed dist/css/styles.min.css",
     "build:jsprodOld": "webpack --mode production ./assets/js/main.js --presets --output ./dist/js/functions.min.js --module-bind js=babel-loader",
     "build:jsprod": "esbuild ./assets/js/main.js --outfile=./dist/js/functions.min.js --minify '--define:process.env.NODE_ENV=\"production\"' --bundle --loader:.js=jsx --target=es2016",
-    "build:jsdev": "esbuild ./assets/js/main.js --outfile=./dist/js/functions.min.js --sourcemap '--define:process.env.NODE_ENV=\"development\"' --bundle --loader:.js=jsx --target=es2016 --color=true",
+    "build:jsdev": "esbuild ./assets/js/main.js --outfile=./dist/js/functions.min.js --sourcemap '--define:process.env.NODE_ENV=\"development\"' --bundle --loader:.js=jsx --target=es2016",
     "watch:cssdev": "onchange 'assets/styles/**/*.scss' -- npm run build:cssdev",
     "watch:jsdev": "onchange 'assets/js/**/*.js' -- npm run build:jsdev",
     "serve": "browser-sync start --proxy https://vanilla_setup.test --files 'dist/**/*.css, dist/**/*.js' -w",
