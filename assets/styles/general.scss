@@ -5,7 +5,6 @@
   $BS: getBaseSize($type);
 
   html {
-    content: $BS;
     font-family: $FontFamilyMain;
     font-weight: 300;
     // only set font-size here, if really needed
