@@ -9,7 +9,7 @@
     font-weight: 300;
     // only set font-size here, if really needed
     // font-size: 16px;
-    line-height: 120%;
+    line-height: 143%;
     color: $Black;
     background-color: $Yellow;
     scroll-behavior: smooth;
@@ -28,14 +28,14 @@
   h4,
   h5,
   h6 {
-    line-height: 120%;
+    line-height: 143%;
     font-weight: 700;
 
-    &:first-of-type {
+    &:first-child {
       margin-top: 0;
     }
 
-    &:last-of-type {
+    &:last-child {
       margin-bottom: 0;
     }
   }
@@ -166,6 +166,10 @@
     margin: 0;
     border: none;
     text-align: inherit;
+  }
+
+  strong {
+    font-weight: 700;
   }
 
   img,
