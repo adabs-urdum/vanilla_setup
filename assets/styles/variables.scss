@@ -8,28 +8,30 @@ $RemSizeFactor: 1 / 16 * $BaseRemSize;
 
 // Width of Screendesign
 $ScreendesignWidth: 1980;
+$BreakpointMaxRelation: 1;
 
 // Full viewportwidth divided by screendesign max width
 // Width of Screendesigns
-$ScreendesignWidthMAX: $ScreendesignWidth;
-$ScreendesignWidthL: 1450;
+$ScreendesignWidthMAX: $ScreendesignWidth * $BreakpointMaxRelation;
+$ScreendesignWidthL: 1440;
 $ScreendesignWidthM: 1024;
 $ScreendesignWidthS: 768;
-$ScreendesignWidthXS: 500;
-$BreakpointLRelation: 1 / $ScreendesignWidthL * $ScreendesignWidthMAX;
-$BreakpointMRelation: 1 / $ScreendesignWidthM * $ScreendesignWidthMAX;
-$BreakpointSRelation: 1 / $ScreendesignWidthS * $ScreendesignWidthMAX;
-$BreakpointXSRelation: 1 / $ScreendesignWidthXS * $ScreendesignWidthMAX;
+$ScreendesignWidthXS: 375;
+$BreakpointLRelation: 1 / $ScreendesignWidthL * $ScreendesignWidth;
+$BreakpointMRelation: 1 / $ScreendesignWidthM * $ScreendesignWidth;
+$BreakpointSRelation: 1 / $ScreendesignWidthS * $ScreendesignWidth;
+$BreakpointXSRelation: 1 / $ScreendesignWidthXS * $ScreendesignWidth;
 
 // Full viewportwidth divided by screendesign max width
-$BS: 100vw / $ScreendesignWidthMAX;
+$BS: 100vw / $ScreendesignWidth;
+$MaxBS: $BreakpointMaxRelation * 1px;
 $LBS: $BS * $BreakpointLRelation;
 $MBS: $BS * $BreakpointMRelation;
 $SBS: $BS * $BreakpointSRelation;
 $XSBS: $BS * $BreakpointXSRelation;
 
 // Define used breakpoints
-$Breakpoints: "Max",
+$Breakpoints: "MAX",
 "L",
 "M",
 "S",
